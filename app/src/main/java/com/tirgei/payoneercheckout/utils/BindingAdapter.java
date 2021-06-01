@@ -1,6 +1,9 @@
 package com.tirgei.payoneercheckout.utils;
 
 import android.view.View;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 public class BindingAdapter {
 
@@ -11,6 +14,14 @@ public class BindingAdapter {
         } else {
             view.setVisibility(View.GONE);
         }
+    }
+
+    @androidx.databinding.BindingAdapter("image")
+    public static void loadImage(ImageView imageView, String url) {
+        Glide.with(imageView.getContext())
+                .load(url)
+                .thumbnail(0.3f)
+                .into(imageView);
     }
 
 }

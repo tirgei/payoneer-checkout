@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.tirgei.data.utils.NetworkStatus;
 import com.tirgei.domain.models.PaymentMethod;
 import com.tirgei.payoneercheckout.R;
 import com.tirgei.payoneercheckout.databinding.FragmentPaymentMethodsBinding;
+import com.tirgei.payoneercheckout.ui.adapters.PaymentsAdapter;
 import com.tirgei.payoneercheckout.ui.viewmodels.PaymentsViewModel;
 
 import org.jetbrains.annotations.NotNull;
@@ -32,6 +34,7 @@ public class PaymentMethodsFragment extends Fragment {
 
     private FragmentPaymentMethodsBinding binding;
     private PaymentsViewModel paymentsViewModel;
+    private PaymentsAdapter paymentsAdapter;
 
     public PaymentMethodsFragment() {
         // Required empty public constructor
@@ -52,6 +55,12 @@ public class PaymentMethodsFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initPaymentsObserver();
+
+        paymentsAdapter = new PaymentsAdapter();
+        binding.paymentsRv.setHasFixedSize(true);
+        binding.paymentsRv.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.paymentsRv.setAdapter(paymentsAdapter);
+
         paymentsViewModel.fetchPaymentMethods();
     }
 
@@ -70,7 +79,7 @@ public class PaymentMethodsFragment extends Fragment {
                         binding.setStatus(NetworkStatus.ERROR);
                         binding.emptyStateView.setMessage(getString(R.string.message_no_payment_methods));
                     } else {
-                        Timber.i("Payment methods found: %d", paymentMethods.size());
+                        paymentsAdapter.setData(paymentMethods);
                     }
                     break;
 
