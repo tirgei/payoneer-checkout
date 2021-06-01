@@ -47,6 +47,9 @@ ext {
     // Glide
     glide = "4.12.0"
 
+    // Lottie
+    lottie = "3.7.0"
+
     // Logging
     timber = "4.7.1"
 
