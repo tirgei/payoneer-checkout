@@ -57,6 +57,8 @@ ext {
     junit = "4.13.2"
     androidXJunit = "1.1.2"
     espresso = "3.3.0"
+    mockito = "3.10.0"
+    googleTruth = "1.1.3"
 
 }
 

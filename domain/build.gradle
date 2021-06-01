@@ -36,4 +36,9 @@ dependencies {
     // RxJava
     implementation "io.reactivex.rxjava3:rxandroid:$rxAndroid"
     implementation "io.reactivex.rxjava3:rxjava:$rxJava"
+
+    // Test
+    testImplementation "org.mockito:mockito-core:$mockito"
+    testImplementation "com.google.truth:truth:$googleTruth"
+    testImplementation "junit:junit:$junit"
 }
