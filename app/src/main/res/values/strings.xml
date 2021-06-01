@@ -8,7 +8,8 @@
 
     <!-- Messages -->
     <string name="message_select_payment_method">Select payment method to checkout</string>
-    <string name="message_unable_to_load_payment_methods">Unable to load payment methods.\nPlease try again</string>
+    <string name="message_unable_to_load_payment_methods">Unable to load payment methods.\nPlease check your internet connection</string>
     <string name="message_no_payment_methods">No payment methods found</string>
+    <string name="message_check_internet_connection">Please check your internet connection</string>
 
 </resources>
