@@ -1,0 +1,4 @@
+rootProject.name = "PayoneerCheckout"
+include ':app'
+include ':data'
+include ':domain'

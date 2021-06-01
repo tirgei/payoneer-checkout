@@ -1,0 +1,88 @@
+plugins {
+    id 'com.android.application'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.tirgei.payoneercheckout"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        dataBinding {
+            enabled = true
+        }
+    }
+}
+
+dependencies {
+    implementation(project(":data"))
+    implementation(project(":domain"))
+
+    // AndroidX
+    implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayout"
+
+    // Material
+    implementation "com.google.android.material:material:$material"
+
+    // Jetpack
+    implementation "androidx.navigation:navigation-fragment:$navigation"
+    implementation "androidx.navigation:navigation-ui:$navigation"
+    implementation "androidx.activity:activity:$activity"
+    implementation "androidx.fragment:fragment:$fragment"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle"
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:$daggerHilt"
+    annotationProcessor "com.google.dagger:hilt-compiler:$daggerHilt"
+
+    // RxJava
+    implementation "io.reactivex.rxjava3:rxandroid:$rxAndroid"
+    implementation "io.reactivex.rxjava3:rxjava:$rxJava"
+
+    // Network
+    implementation "com.google.code.gson:gson:$gson"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptor"
+
+    // Logging
+    implementation "com.jakewharton.timber:timber:$timber"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
+
+    // Unit Tests
+    testImplementation "junit:junit:$junit"
+    testImplementation "androidx.arch.core:core-testing:$archVersion"
+
+    // Instrumentation Tests
+    androidTestImplementation "androidx.test.ext:junit:$androidXJunit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+    androidTestImplementation "androidx.navigation:navigation-testing:$navigation"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment"
+}
