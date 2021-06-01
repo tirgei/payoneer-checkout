@@ -9,5 +9,6 @@
     <!-- Messages -->
     <string name="message_select_payment_method">Select payment method to checkout</string>
     <string name="message_unable_to_load_payment_methods">Unable to load payment methods.\nPlease try again</string>
+    <string name="message_no_payment_methods">No payment methods found</string>
 
 </resources>

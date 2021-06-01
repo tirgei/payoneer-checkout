@@ -43,6 +43,7 @@ ext {
     gson = "2.8.6"
     retrofit = "2.9.0"
     loggingInterceptor = "4.9.1"
+    rxAdaptor = "3.0.0"
 
     // Glide
     glide = "4.12.0"

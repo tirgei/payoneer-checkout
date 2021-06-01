@@ -27,5 +27,15 @@ public class NetworkResponse <T> {
         return new NetworkResponse(NetworkStatus.ERROR, null, e);
     }
 
+    public NetworkStatus getStatus() {
+        return status;
+    }
 
+    public T getData() {
+        return data;
+    }
+
+    public Exception getException() {
+        return exception;
+    }
 }
