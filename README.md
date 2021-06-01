@@ -3,6 +3,8 @@
 This app showcases sample payment methods available during the checkout process for the [Payoneer](https://www.payoneer.com/)
 platform. The app is built using Java and encompasses the Clean Architecture principle with MVVM approach and Jetpack libraries.
 
+You can download the test apk here - [Payoneer](art/payoneer-checkout.apk)
+
 ## Table of Contents
 - [Project Setup](#project-setup)
 - [Architecture](#architecture)
@@ -70,4 +72,4 @@ For testing, the following libraries are included:
 - [Truth](https://truth.dev/) - Assertions library by Google
 
 ## Screenshots
-<img src="screenshots/screenshot.jpg" width="300" >
+<img src="art/screenshot.jpg" width="300" >
