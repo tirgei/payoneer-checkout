@@ -21,6 +21,7 @@ import com.tirgei.domain.models.PaymentMethod;
 import com.tirgei.payoneercheckout.R;
 import com.tirgei.payoneercheckout.databinding.FragmentPaymentMethodsBinding;
 import com.tirgei.payoneercheckout.ui.adapters.PaymentsAdapter;
+import com.tirgei.payoneercheckout.ui.interfaces.PaymentCallback;
 import com.tirgei.payoneercheckout.ui.viewmodels.PaymentsViewModel;
 import com.tirgei.payoneercheckout.utils.NetworkManager;
 
@@ -33,7 +34,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import timber.log.Timber;
 
 @AndroidEntryPoint
-public class PaymentMethodsFragment extends Fragment {
+public class PaymentMethodsFragment extends Fragment implements PaymentCallback {
 
     private FragmentPaymentMethodsBinding binding;
     private PaymentsViewModel paymentsViewModel;
@@ -61,13 +62,18 @@ public class PaymentMethodsFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        paymentsAdapter = new PaymentsAdapter();
+        paymentsAdapter = new PaymentsAdapter(this);
         binding.paymentsRv.setHasFixedSize(true);
         binding.paymentsRv.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.paymentsRv.setAdapter(paymentsAdapter);
 
         initPaymentsObserver();
         initNetworkObserver();
+    }
+
+    @Override
+    public void onPaymentMethodClicked(PaymentMethod method) {
+        toast(getString(R.string.message_payment_method_selected, method.getLabel()));
     }
 
     /**
@@ -111,9 +117,13 @@ public class PaymentMethodsFragment extends Fragment {
                     binding.emptyStateView.setMessage(getString(R.string.message_unable_to_load_payment_methods));
                     binding.setStatus(NetworkStatus.ERROR);
                 } else {
-                    Toast.makeText(requireContext(), getString(R.string.message_check_internet_connection), Toast.LENGTH_LONG).show();
+                    toast(getString(R.string.message_check_internet_connection));
                 }
             }
         });
+    }
+
+    private void toast(String message) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
     }
 }

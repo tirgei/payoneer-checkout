@@ -5,6 +5,10 @@
         <variable
             name="paymentMethod"
             type="com.tirgei.domain.models.PaymentMethod" />
+
+        <variable
+            name="callback"
+            type="com.tirgei.payoneercheckout.ui.interfaces.PaymentCallback" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +21,8 @@
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="15dp"
+        android:onClick="@{() -> callback.onPaymentMethodClicked(paymentMethod)}">
 
         <ImageView
             android:id="@+id/logo"

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.tirgei.domain.models.PaymentMethod;
 import com.tirgei.payoneercheckout.R;
 import com.tirgei.payoneercheckout.databinding.ItemPaymentMethodBinding;
+import com.tirgei.payoneercheckout.ui.interfaces.PaymentCallback;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -21,6 +22,11 @@ import java.util.List;
  */
 public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.PaymentHolder> {
     private final List<PaymentMethod> paymentMethods = new ArrayList<>();
+    private final PaymentCallback paymentCallback;
+
+    public PaymentsAdapter(PaymentCallback paymentCallback) {
+        this.paymentCallback = paymentCallback;
+    }
 
     /**
      * Set list of {@link PaymentMethod}s
@@ -43,7 +49,7 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.Paymen
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull PaymentsAdapter.PaymentHolder holder, int position) {
-        holder.bind(paymentMethods.get(position));
+        holder.bind(paymentMethods.get(position), paymentCallback);
     }
 
     @Override
@@ -60,8 +66,9 @@ public class PaymentsAdapter extends RecyclerView.Adapter<PaymentsAdapter.Paymen
             this.binding = binding;
         }
 
-        public void bind(PaymentMethod paymentMethod) {
+        public void bind(PaymentMethod paymentMethod, PaymentCallback paymentCallback) {
             binding.setPaymentMethod(paymentMethod);
+            binding.setCallback(paymentCallback);
         }
     }
 
