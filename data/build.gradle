@@ -38,6 +38,11 @@ dependencies {
     implementation "io.reactivex.rxjava3:rxandroid:$rxAndroid"
     implementation "io.reactivex.rxjava3:rxjava:$rxJava"
 
-    // Retrofit
+    // Network
+    implementation "com.google.code.gson:gson:$gson"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
+
+    // Test
+    testImplementation "com.google.truth:truth:$googleTruth"
+    testImplementation "junit:junit:$junit"
 }
